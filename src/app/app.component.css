@@ -1,0 +1,139 @@
+.nav-container{
+    margin-top: 60px;
+    height: 100%;
+}
+
+.nav-container li{
+    position: relative;
+    margin: 10px 0px;
+    list-style: none;
+}
+
+.nav-container{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-primary);
+  padding: 10px 5px;
+  z-index: 99;
+  transition: all .5s;
+}
+
+.nav-container i{
+  color: #000;
+  height: 60px;
+  min-width: 50px;
+  font-size: 22px;
+  text-align: center;
+  line-height: 60px;
+}
+
+.container{
+  position: relative;
+  background-color: #E4E9F7;
+  min-height: 100vh;
+  top: 0;
+  left: 70px;
+  width: calc(100% - 70px);
+  transition: all .5s;
+  z-index: 2;
+}
+
+.container h1{
+  display: inline-block;
+  margin: 18px;
+}
+
+.tooltip{
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 20px);
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0s;
+}
+
+.nav-container li:hover .tooltip{
+  opacity: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all .4s;
+}
+
+.nav-container li a{
+  display: flex;
+
+  align-items: center;
+  text-decoration: none;
+
+}
+
+
+.nav-container li.active a i {
+  color: #6998ef; /* Color blanco cuando está activo */
+}
+
+
+
+.nav-container li a .links{
+  color: #000;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: .4s;
+}
+
+
+
+.nav-container li i{
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  border-radius: 12px;
+}
+
+
+/* Estilos para móviles */
+@media (max-width: 768px) {
+  /* Ocultar barra lateral por defecto */
+  .nav-container {
+    width: 0;
+    overflow: hidden;
+  }
+
+  .nav-container.active {
+    width: 200px; /* Ancho de la barra cuando está activa */
+  }
+
+  /* Ajustar el contenido principal */
+  .container {
+    left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ajustar íconos y espaciado */
+  .nav-container i {
+    font-size: 18px;
+  }
+
+  .tooltip {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}

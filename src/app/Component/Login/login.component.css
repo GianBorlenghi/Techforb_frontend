@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-family: 'Inter';
+    box-sizing: border-box;
+}
+
+.container{
+    background: linear-gradient(to right, rgba(33, 150, 243, 0.9), rgba(3, 169, 244, 0.8));  height: 100vh;
+
+    width: 60%;
+    height: 100%;
+    margin: 0;
+    justify-content: center;
+}
+
+h6>i{
+    color:rgb(217, 217, 96);
+    margin-right: 10px;
+}
+.container-form{
+    display: flex;
+    margin:0 auto;
+    flex-direction: column;
+    justify-content:center ;
+    border-radius: 100px;
+}
+
+.form-floating > input{
+    margin-top: 20px;
+    width: 100%;
+    font-size: 1.2rem; /* Aumenta el tamaño de la fuente */
+    height: 100%; /* Ajusta la altura para hacer los inputs más grandes */
+    outline: none;
+    border:none
+}
+
+.form-group>button{
+    margin-top: 20px;
+    text-align: center;
+    height: 50px;
+    width: 170px;
+
+}
+a{
+    text-decoration: none;
+}
+
+.alert {
+    font-size: 10px;
+    color: #f00;
+    padding: 0;
+    margin: 0;
+    margin-top: 0;
+    top: 0;
+  }
+

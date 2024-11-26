@@ -1,0 +1,48 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Cards Container */
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  /* Card */
+  .card {
+    width: 18rem;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  .button-container {
+    display: flex;             
+    justify-content: center;   
+    align-items: center;      
+  }
+  
+  .lectura {
+    padding: 10px 20px;       
+    font-size: 16px;           
+    cursor: pointer;          
+    border: none;              
+    background-color: #78c3c7; 
+    color: white;              
+    border-radius: 5px;      
+    transition: background-color 0.3s; 
+  }
+  
+  .lectura:hover {
+    background-color: rgb(58, 139, 125); 
+  }

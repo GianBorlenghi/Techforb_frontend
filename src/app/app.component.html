@@ -1,0 +1,84 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/brands.js" integrity="sha384-sCI3dTBIJuqT6AwL++zH7qL8ZdKaHpxU43dDt9SyOzimtQ9eyRhkG3B7KMl6AO19" crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@1,600&display=swap"
+  rel="stylesheet">
+
+
+  <button id="menu-toggle" style="position: fixed; top: 10px; left: 10px; z-index: 100;">☰</button>
+
+<div *ngIf="!isLoginRoute()" class="navbar">
+
+
+
+    <ul class="nav-container">
+  
+  
+      <li class="active" >
+        <a routerLink="/dashboard">
+          <i class="fas fa-globe" routerLinkActive="active"></i>
+  
+          <span class="links">Dashboard</span>
+        </a>
+        <span class="tooltip">Dashboard</span>
+      </li>
+  
+      <li >
+        <a routerLink="/dashboard/alertas">
+          <i class="fas fa-bell" routerLinkActive="active"></i>
+          <span class="links">Alertas</span>
+        </a>
+        <span class="tooltip">Alertas</span>
+      </li>
+  
+      <li >
+        <a routerLink="/dashboard/sensor">
+          <i class="fas fa-thermometer-half" routerLinkActive="active"></i>
+          <span class="links">Sensores</span>
+        </a>
+        <span class="tooltip">Sensores</span>
+      </li>
+  
+      <li >
+        <a routerLink="/dashboard/plantas">
+          <i class="fas fa-industry" routerLinkActive="active"></i>
+          <span class="links">Plantas</span>
+        </a>
+        <span class="tooltip">Plantas</span>
+      </li>
+  
+  
+  
+      <li routerLinkActive="active">
+        <a routerLink="#" (click)="logout()">
+          <i class='fas fa-sign-out-alt'></i>
+          <span class="links">Logout</span>
+        </a>
+        <span class="tooltip">Logout</span>
+      </li>
+    </ul>
+  
+  
+  
+  </div>
+
+  <nav *ngIf="!isLoginRoute()" class="navbar navbar-expand-sm bg-light navbar-light">
+    <div class="container-fluid">
+      <div class="dropdown ms-auto">
+        <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <img src="https://png.pngtree.com/png-clipart/20190516/original/pngtree-users-vector-icon-png-image_3725294.jpg"
+            alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" routerLink="/profile">Perfil</a></li>
+ 
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+<router-outlet></router-outlet>

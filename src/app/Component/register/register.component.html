@@ -1,0 +1,118 @@
+<div class="form-container">
+    <form [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+        <input type="text" class="form-control" formControlName="name" id="exampleFormControlInput1" placeholder="">
+
+        <div class="text-danger" *ngIf="registerForm.get('name')?.errors?.['required']">
+            *Campo nombre es requerido.
+        </div>
+
+        <div class="text-danger" *ngIf="registerForm.get('name')?.errors?.['maxlength']">
+            *Campo nombre no puede ser mayor a 25 caracteres.
+        </div>
+
+
+        <div class="text-danger" *ngIf="registerForm.get('name')?.errors?.['minlength']">
+            *Campo nombre no puede ser menor a 3 caracteres.
+        </div>
+
+        <div class="text-danger" *ngIf="registerForm.get('name')?.errors?.['pattern']">
+            *Campo nombre acepta solo letras.
+        </div>
+
+      </div>
+
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Apellido</label>
+        <input type="text" class="form-control"formControlName="surname" id="exampleFormControlInput2">
+
+        <div class="text-danger" *ngIf="registerForm.get('surname')?.errors?.['required']">
+            *Campo apellido requerido.
+        </div>
+
+        <div class="text-danger" *ngIf="registerForm.get('surname')?.errors?.['maxlength']">
+            *Campo apellido no puede ser mayor a 35 caracteres
+        </div>
+
+        <div class="text-danger" *ngIf="registerForm.get('surname')?.errors?.['minlength']">
+            *Campo apellido no puede ser menor a 3 caracteres.
+        </div>
+
+        <div class="text-danger" *ngIf="registerForm.get('surname')?.errors?.['pattern']">
+            *Campo apellido solo acepta letras.
+        </div>
+
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Fecha nacimiento</label>
+        <input type="date" class="form-control"formControlName="dateOfBirth" id="exampleFormControlInput3" (change)="validateBirth()">
+
+        <div class="text-danger" *ngIf="!ageValid">
+            *Solo personas mayores a 18 años se pueden registrar.
+        </div>
+
+        <div class="text-danger" *ngIf="registerForm.get('dateOfBirth')?.errors?.['required']">
+            *Fecha de nacimiento requerida.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Provincia</label>
+        <input type="text" class="form-control"formControlName="province" id="exampleFormControlInput4">
+        <div class="text-danger" *ngIf="registerForm.get('province')?.errors?.['required']">
+            *Provincia es requerida.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Ciudad</label>
+        <input type="text" class="form-control" formControlName="city" id="exampleFormControlInput5">
+
+        
+        <div class="text-danger" hidden="true" id="alert-city" *ngIf="registerForm.get('city')?.errors?.['required']">
+            *Ciudad requerida
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Usuario</label>
+        <input type="email" class="form-control" formControlName="username" id="exampleFormControlInput6">
+        <div class="text-danger" id="alert-city" *ngIf="registerForm.get('username')?.errors?.['required']">
+            *Usuario requerido.
+        </div>
+
+        <div class="text-danger" id="alert-city" *ngIf="registerForm.get('username')?.errors?.['email']">
+            *No coincide con un mail válido.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password" id="exampleFormControlInput7">
+        
+        <div class="text-danger" id="alert-city" *ngIf="registerForm.get('password')?.errors?.['required']">
+                    *Contraseña requerida.
+                </div>
+
+                <div class="text-danger" id="alert-city" *ngIf="registerForm.get('password')?.errors?.['minlength']">
+                    *La contraseña tiene que tener al menos 8 caracteres.
+                </div>
+
+                <div class="text-danger" id="alert-city" *ngIf="registerForm.get('password')?.errors?.['maxlength']">
+                    *La contraseña no debe superar los 25 caracteres.
+                </div>
+
+                <div class="text-danger" id="alert-city" *ngIf="registerForm.get('password')?.errors?.['pattern']">
+                                        *Contraseña necesita: Una letra mayúscula y un caracter especial.
+                </div>
+      </div>
+
+
+      <div class="mb-3">
+        <input type="submit" value ="Registrarme" class="form-control" style="color:#000;font-weight: bold;height: 3rem;font-size: 20px;background-color: #a5f1e3;">
+        <input type="submit" routerLink="/login" value = "Volver" class="form-control" style="color:#000;font-weight: bold;height: 3rem;font-size: 20px;background-color: #a5f1e3;margin-top:15px;" >
+
+    </div>
+    </form>
+</div>

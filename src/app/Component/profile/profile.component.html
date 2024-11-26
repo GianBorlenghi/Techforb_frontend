@@ -1,0 +1,98 @@
+<div class="form-container">
+    <form [formGroup]="profileForm" (ngSubmit)="submitEditProfile()">
+     
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+        <input type="text" class="form-control" formControlName="name" id="exampleFormControlInput1" placeholder="">
+
+        <div class="text-danger" *ngIf="profileForm.get('name')?.errors?.['required']">
+            *Campo nombre es requerido.
+        </div>
+
+        <div class="text-danger" *ngIf="profileForm.get('name')?.errors?.['maxlength']">
+            *Campo nombre no puede ser mayor a 25 caracteres.
+        </div>
+
+
+        <div class="text-danger" *ngIf="profileForm.get('name')?.errors?.['minlength']">
+            *Campo nombre no puede ser menor a 3 caracteres.
+        </div>
+
+        <div class="text-danger" *ngIf="profileForm.get('name')?.errors?.['pattern']">
+            *Campo nombre acepta solo letras.
+        </div>
+
+      </div>
+
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Apellido</label>
+        <input type="text" class="form-control"formControlName="surname" id="exampleFormControlInput2">
+
+        <div class="text-danger" *ngIf="profileForm.get('surname')?.errors?.['required']">
+            *Campo apellido requerido.
+        </div>
+
+        <div class="text-danger" *ngIf="profileForm.get('surname')?.errors?.['maxlength']">
+            *Campo apellido no puede ser mayor a 35 caracteres
+        </div>
+
+        <div class="text-danger" *ngIf="profileForm.get('surname')?.errors?.['minlength']">
+            *Campo apellido no puede ser menor a 3 caracteres.
+        </div>
+
+        <div class="text-danger" *ngIf="profileForm.get('surname')?.errors?.['pattern']">
+            *Campo apellido solo acepta letras.
+        </div>
+
+      </div>
+
+      
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Provincia</label>
+        <input type="text" class="form-control"formControlName="province" id="exampleFormControlInput4">
+        <div class="text-danger" *ngIf="profileForm.get('province')?.errors?.['required']">
+            *Provincia es requerida.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Ciudad</label>
+        <input type="text" class="form-control" formControlName="city" id="exampleFormControlInput5">
+
+        
+        <div class="text-danger" hidden="true" id="alert-city" *ngIf="profileForm.get('city')?.errors?.['required']">
+            *Ciudad requerida
+        </div>
+      </div>
+ 
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password" id="exampleFormControlInput7">
+        
+        <div class="text-danger" id="alert-city" *ngIf="profileForm.get('password')?.errors?.['required']">
+                    *Contraseña requerida.
+                </div>
+
+                <div class="text-danger" id="alert-city" *ngIf="profileForm.get('password')?.errors?.['minlength']">
+                    *La contraseña tiene que tener al menos 8 caracteres.
+                </div>
+
+                <div class="text-danger" id="alert-city" *ngIf="profileForm.get('password')?.errors?.['maxlength']">
+                    *La contraseña no debe superar los 25 caracteres.
+                </div>
+
+                <div class="text-danger" id="alert-city" *ngIf="profileForm.get('password')?.errors?.['pattern']">
+                                        *Contraseña necesita: Una letra mayúscula y un caracter especial.
+                </div>
+      </div>
+
+
+      <div class="mb-3">
+        <input type="submit" id="btnEdit" value ="Guardar" class="form-control" style="color:#000;font-weight: bold;height: 3rem;font-size: 20px;background-color: #a5f1e3;">
+        <input type="submit" routerLink="/dashboard" value = "Cancelar" class="form-control" style="color:#000;font-weight: bold;height: 3rem;font-size: 20px;background-color: #a5f1e3;margin-top:15px;" >
+
+    </div>
+    </form>
+</div>

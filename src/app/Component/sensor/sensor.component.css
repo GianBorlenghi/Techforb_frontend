@@ -1,0 +1,133 @@
+/* General */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Cards Container */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Card */
+.card {
+  width: 18rem;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Table */
+.table-principal {
+  padding: 1rem;
+  overflow-x: auto;  /* Permite desplazamiento horizontal */
+  overflow-y: auto;  /* Permite desplazamiento vertical */
+  background-color: rgb(213, 255, 225);
+  width: 70%;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  -webkit-overflow-scrolling: touch; 
+
+}
+.header-container > button:hover{
+  transform: scale(1.05);
+
+}
+
+.table {
+  width: 100%; /* Mantiene el tamaño deseado para la tabla */
+  margin: 0 auto; /* Centra la tabla horizontalmente */
+  border-collapse: collapse;
+  text-align: center;
+
+}
+
+
+.table th, .table td {
+  padding: 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%; 
+  margin-bottom: 10px;
+  border-radius: 30px;
+    gap: 10px;
+  line-height: 0;
+}
+
+.header-container > button {
+  padding:5px 15px;
+border:1px solid #000;
+margin-left:20px;
+background-color: #fff;
+line-height: normal;
+margin-bottom:10px;
+border-radius: 10px;
+transition: transform 0.3s ease-in-out;
+
+}
+/* Modal */
+.modal-content {
+  padding: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  /* Adjust cards layout */
+
+  /* Table adjustments */
+  .table-principal {
+    padding: 0.5rem;
+    overflow-y:auto;
+
+  }
+
+  .table th, .table td {
+    font-size: 0.6rem;
+    padding: 0.5rem;
+  }
+
+  /* Header adjustments */
+  .header-container {
+    gap: 1rem;
+    flex-direction: column;
+    font-size: 0.6rem;
+    text-align: center;
+    margin:0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Reduce card size */
+ 
+  .table-principal {
+    overflow-y:auto;
+
+  }
+  .header-container h5 {
+    font-size: 0.8rem;
+  }
+
+  .header-container button {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+    flex: auto;
+  }
+}

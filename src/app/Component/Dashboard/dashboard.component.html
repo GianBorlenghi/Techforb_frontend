@@ -1,0 +1,305 @@
+<head>
+  <!-- Font Awesome CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/brands.js"
+    integrity="sha384-sCI3dTBIJuqT6AwL++zH7qL8ZdKaHpxU43dDt9SyOzimtQ9eyRhkG3B7KMl6AO19"
+    crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@1,600&display=swap"
+    rel="stylesheet">
+</head>
+
+
+
+
+
+
+<body>
+  <div class="cards-container">
+  <div class="cards-container d-flex flex-wrap gap 1rem">
+    <div class="d-flex flex-wrap gap-10">
+      <div class="card bg-light mb-3" style="width: 18rem;text-align: center;">
+        <div class="card-body">
+          <p class="text-muted">Lecturas OK </p>
+          <p class="card-text" style="font-size: 2rem">{{totalOkAlert}} <i class="fas fa-check"
+              style="color: green; margin-left: 5px;"></i></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-wrap gap-10">
+      <div class="card bg-light mb-3" style="width: 18rem;text-align: center;">
+        <div class="card-body">
+          <p class="text-muted">Alertas medias</p>
+          <p class="card-text" style="font-size: 2rem">{{totalMediumAlert}}<i class="fas fa-exclamation"
+              style="color: yellow; margin-left: 10px;"></i></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-wrap gap-10">
+      <div class="card bg-light mb-3" style="width: 18rem;text-align: center;">
+        <div class="card-body">
+          <p class="text-muted">Alertas rojas</p>
+          <p class="card-text" style="font-size: 2rem;">{{totalRedAlert}} <i class="fas fa-exclamation"
+              style="color: rgb(194, 103, 103); margin-left: 5px;"></i></p>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-wrap gap-10">
+      <div class="card bg-light mb-3" style="width: 18rem;text-align: center;">
+        <div class="card-body">
+          <p class="text-muted">Sensores deshabilitados</p>
+          <p class="card-text" style="font-size: 2rem;">{{disabledSensors}} <i class="fas fa-x"
+              style="color: rgb(194, 103, 103); margin-left: 5px;"></i></p>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-wrap gap-10">
+      <div class="card bg-light mb-3" style="width: 18rem;text-align: center;">
+        <div class="card-body">
+          <p class="text-muted">Lecturas totales</p>
+          <p class="card-text" style="font-size: 2rem;">{{totalReadings}} <i class="fas fa-x"
+              style="color: rgb(194, 103, 103); margin-left: 5px;"></i></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="table-principal">
+    <div class="header-container">
+      <h5> Plantas</h5>
+      <button aria-current="page" data-bs-toggle="modal" style="cursor:pointer;" data-bs-target="#addPlantModal">+ Crear
+        nueva planta</button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-muted" style="font-weight: normal;" scope="col">País</th>
+          <th class="text-muted" style="font-weight: normal;" scope="col">Nombre de la planta</th>
+          <th class="text-muted" style="font-weight: normal;" scope="col">Lecturas</th>
+          <th class="text-muted" style="font-weight: normal;" scope="col">Lecturas con alerta Media</th>
+          <th class="text-muted" style="font-weight: normal;" scope="col">Lecturas con alerta Rojas</th>
+          <th class="text-muted" style="font-weight: normal;" scope="col">Acciones</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of plants;let index">
+          <td><img style="width: 1.5rem;margin-right:5px;" src="{{p.country.flag_url}}" alt="">{{p.country.name}}</td>
+          <td>{{p.plant_name}}</td>
+          <td>{{p.readings_by_plant}} </td>
+          <td>{{p.medium_alert_by_plant}}</td>
+          <td>{{p.red_alert_by_plant}}</td>
+          <td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img src="https://www.svgrepo.com/show/350510/elipsis-v.svg" width="20px" alt="" class="src">
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" data-bs-toggle="modal" (click)="openModalEdit(p)"
+                    data-bs-target="#exampleModal" style="cursor:pointer;" data-bs-whatever="@mdo">Editar planta</a>
+                </li>
+                <li><a  (click) = "guardarId(p)"class="dropdown-item" aria-current="page" data-bs-toggle="modal" style="cursor:pointer;"
+                    data-bs-target="#addSensorModal" >Agregar sensor</a></li>
+                <li><a class=" dropdown-item" (click)="deletePlant(p)" style="cursor:pointer;">Eliminar planta</a></li>
+              </ul>
+            </div>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cards-container d-flex flex-wrap gap 1rem">
+    <div *ngFor="let sens of readSensor" class="d-flex flex-wrap gap-10">
+      <div class="card bg-light mb-3" style="width: 20rem;text-align: center;align-items: center;height: 100px">
+        <div class="card-body">
+          <p class="text-muted">{{sens.type}}</p>
+          <p class="card-text" style="display: flex; align-items: center; justify-content: flex-start; gap: 15px;">
+            <span style="display: flex; align-items: center;">
+              <i class="fas fa-check" style="color: green; margin-right: 5px;"></i>{{sens.normalAlerts}}
+            </span>
+            <span style="display: flex; align-items: center;">
+              <i class="fas fa-exclamation"
+                style="color: yellow; margin-right: 5px;"></i>{{sens.mediumAlerts}}
+            </span>
+            <span style="display: flex; align-items: center;">
+              <i class="fas fa-exclamation" style="color: red; margin-right: 5px;"></i>{{sens.redAlerts}}
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL CREATE PLANT-->
+    <div class="modal fade" id="addPlantModal" tabindex="-1" aria-labelledby="addPlantModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-primary">
+            <h1 class="modal-title fs-5" id="editTaskModalLabel">Agregar planta</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <form [formGroup]="createPlantForm" (ngSubmit)="addPlantSubmit()">
+              <fieldset>
+                <div class="form-group">
+                  <label for="nombrePlanta">Nombre planta</label>
+                  <input type="text" id="nombrePlanta" class="form-control" placeholder="Nombre"
+                    formControlName="plantName">
+                  <div class="text-center" style="margin-top:10px;"
+                    *ngIf="createPlantForm.get('plantName')?.errors?.['required']">
+                    <small class="text-danger">Por favor, ingrese un nombre de planta.</small>
+                  </div>
+
+                  <div class="text-center" *ngIf="createPlantForm.get('plantName')?.errors?.['pattern']">
+                    <small class="text-danger">Por favor, ingrese caractéres válidos.</small>
+                  </div>
+
+                  <div class="text-center" *ngIf="createPlantForm.get('plantName')?.errors?.['minlength']">
+                    <small class="text-danger">Debe ingresar, al menos, tres caracteres.</small>
+                  </div>
+
+                  <div class="text-center" *ngIf="createPlantForm.get('plantName')?.errors?.['maxlength']">
+                    <small class="text-danger">Debe ingresar, como máximo, 30 caracteres.</small>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="selectCountry">Seleccione el país</label>
+                  <select id="selectCountry" class="form-control" formControlName="countryN" value="">
+                    <option [ngValue]="null" disabled>Seleccionar país</option>
+                    <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
+                  </select>
+                  <div class="text-center" style="margin-top:10px;"
+                    *ngIf="createPlantForm.get('countryN')?.errors?.['required']">
+                    <small class="text-danger">Por favor, selecciona un país.</small>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="margin-top:30px;align-items: center;">Crear
+                  planta</button>
+              </fieldset>
+            </form>
+          </div>
+          <div class="modal-footer">
+
+
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL EDIT PLANT-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modificación de planta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="editPlantForm" (ngSubmit)="editPlantSubmit()">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">ID Plant:</label>
+              <input type="text" class="form-control" id="recipient-name" disabled >
+            </div>
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Nombre planta:</label>
+              <input type="text" class="form-control" formControlName="plantName" id="recipient2-name"
+               >
+            </div>
+            <div class="text-center" style="margin-top:10px;"
+              *ngIf="editPlantForm.get('plantName')?.errors?.['required']">
+              <small class="text-danger">Por favor, ingrese un nombre de planta.</small>
+            </div>
+
+            <div class="text-center" *ngIf="editPlantForm.get('plantName')?.errors?.['pattern']">
+              <small class="text-danger">Por favor, ingrese caractéres válidos.</small>
+            </div>
+
+            <div class="text-center" *ngIf="editPlantForm.get('plantName')?.errors?.['minlength']">
+              <small class="text-danger">Debe ingresar, al menos, tres caracteres.</small>
+            </div>
+
+            <div class="text-center" *ngIf="editPlantForm.get('plantName')?.errors?.['maxlength']">
+              <small class="text-danger">Debe ingresar, como máximo, 30 caracteres.</small>
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Alertas medias:</label>
+              <input type="text" class="form-control" id="recipient-name" disabled
+               >
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Alertas rojas:</label>
+              <input type="text" class="form-control" id="recipient-name" disabled
+               >
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Alertas totales:</label>
+              <input type="text" class="form-control" id="recipient-name" disabled
+               >
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!--MODAL ADD SENSOR TO PLANT-->
+
+  <div class="modal fade" id="addSensorModal" tabindex="-1" aria-labelledby="addSensorModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-light">
+          <h1 class="modal-title fs-5" id="">Agregar sensor a planta</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <form [formGroup]="addSensorForm" (ngSubmit)="addSensorPlant()">
+
+            <div class="form-group">
+              <label for="selectSensor">Seleccione el sensor</label>
+              <select id="selectSensor" class="form-control" formControlName="sensor" value="">
+                <option [ngValue]="null" disabled>Seleccionar sensor para agregar a la planta</option>
+                <option *ngFor="let s of sensor" [ngValue]="s">{{s.type}}</option>
+              </select>
+              <div class="text-center" style="margin-top:10px;" *ngIf="addSensorForm.get('sensor')?.errors?.['required']">
+                <small class="text-danger">Por favor, selecciona un sensor.</small>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top:30px;align-items: center;">Agregar sensor
+            </button>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+
+
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>

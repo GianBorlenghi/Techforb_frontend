@@ -1,0 +1,207 @@
+<div class="table-principal">
+  <div class="header-container">
+    <h5> Sensores</h5>
+    <button aria-current="page" data-bs-toggle="modal" data-bs-target="#addSensorModal" style="cursor:pointer;"
+    data-bs-whatever="@mdo">+ Crear
+      nuevo sensor</button>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="text-muted" style="font-weight: normal;" scope="col">Tipo de sensor</th>
+        <th class="text-muted" style="font-weight: normal;" scope="col">Valor normal</th>
+        <th class="text-muted" style="font-weight: normal;" scope="col">Valor crítico</th>
+        <th class="text-muted" style="font-weight: normal;" scope="col">Ultima modificación</th>
+        <th class="text-muted" style="font-weight: normal;" scope="col">Acciones</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of sensor">
+       <!-- <td>{{ s.plant?.plant_name === null ? 'Sin asignar' : s.plant?.plant_name }}</td>-->
+        <td>{{s.type}}</td>
+        <td>{{s.normal_value}}</td>
+        <td>{{s.critical_value}}</td>
+        <td>{{ s.last_modification | formatDate }}
+         
+        </td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://www.svgrepo.com/show/350510/elipsis-v.svg" width="20px" alt="" class="src">
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editSensorModal" style="cursor:pointer;"
+                  data-bs-whatever="@mdo" (click)="openModalEdit(s)">Editar sensor</a>
+              </li>
+              <li><a class=" dropdown-item" style="cursor:pointer;" (click)="deleteSensor(s)">Eliminar sensor</a></li>
+            </ul>
+          </div>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MODAL EDIT SENSOR-->
+  <div class="modal fade" id="editSensorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modificación de sensor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="editSensorForm" (ngSubmit)="editSensorSubmit()">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">ID Sensor:</label>
+              <input  type="text" class="form-control" id="recipient-name"  formControlName="id_sensor"  >
+            </div>
+
+            <div class="mb-3">
+              
+              <label for="recipient-name" class="col-form-label">Nombre sensor:</label>
+
+              <input type="text" class="form-control" id="recipient2-name" formControlName="sensorName"
+               >
+                <div class="text-center" *ngIf="editSensorForm.get('sensorName')?.errors?.['pattern']">
+                  <small class="text-danger">El campo solo acepta letras.</small>
+                </div>
+                <div class="text-center" *ngIf="editSensorForm.get('sensorName')?.errors?.['required']">
+                  <small class="text-danger">El campo nombre es obligatorio.</small>
+                </div>
+
+                <div class="text-center" *ngIf="editSensorForm.get('sensorName')?.errors?.['minlength']">
+                  <small class="text-danger">Debe ingresar, al menos, tres caracteres.</small>
+                </div>
+
+                <div class="text-center" *ngIf="editSensorForm.get('sensorName')?.errors?.['maxlength']">
+                  <small class="text-danger">Debe ingresar, como máximo 25 caracteres.</small>
+                </div>
+
+            </div>
+           
+
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Valor normal:</label>
+              <input type="number" class="form-control" id="recipient-name" formControlName="normalValue"
+              >
+
+              <div class="text-center" *ngIf="editSensorForm.get('normalValue')?.errors?.['required']">
+                <small class="text-danger">El campo valor normal es obligatorio.</small>
+              </div>
+
+              
+              <div class="text-center" *ngIf="editSensorForm.get('normalValue')?.errors?.['pattern']">
+                <small class="text-danger">El campo permite solo números.</small>
+              </div>
+              
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Valor máximo:</label>
+              <input type="number" class="form-control" id="recipient-name" formControlName="criticalValue"
+                >
+
+                
+              <div class="text-center" *ngIf="editSensorForm.get('criticalValue')?.errors?.['required']">
+                <small class="text-danger">El campo valor máximo es obligatorio.</small>
+              </div>
+
+              
+              <div class="text-center" *ngIf="editSensorForm.get('criticalValue')?.errors?.['pattern']">
+                <small class="text-danger">El campo permite solo números.</small>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Editar sensor</button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+    
+<!-- MODAL CREATE SENSOR-->
+<div class="modal fade" id="addSensorModal" tabindex="-1" aria-labelledby="addSensorModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificación de sensor</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="createSensorForm" (ngSubmit)="createSensorSubmit()">
+
+          <div class="mb-3">
+            
+            <label for="recipient-name" class="col-form-label">Nombre sensor:</label>
+
+            <input type="text" class="form-control" id="recipient2-name" formControlName="sensorN"
+             >
+              <div class="text-center" *ngIf="createSensorForm.get('sensorN')?.errors?.['pattern']">
+                <small class="text-danger">El campo solo acepta letras.</small>
+              </div>
+              <div class="text-center" *ngIf="createSensorForm.get('sensorN')?.errors?.['required']">
+                <small class="text-danger">El campo nombre es obligatorio.</small>
+              </div>
+
+              <div class="text-center" *ngIf="createSensorForm.get('sensorN')?.errors?.['minlength']">
+                <small class="text-danger">Debe ingresar, al menos, tres caracteres.</small>
+              </div>
+
+              <div class="text-center" *ngIf="createSensorForm.get('sensorN')?.errors?.['maxlength']">
+                <small class="text-danger">Debe ingresar, como máximo 25 caracteres.</small>
+              </div>
+
+          </div>
+         
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Valor normal:</label>
+            <input type="number" class="form-control" id="recipient-name" formControlName="normalV"
+            >
+
+            <div class="text-center" *ngIf="createSensorForm.get('normalV')?.errors?.['required']">
+              <small class="text-danger">El campo valor normal es obligatorio.</small>
+            </div>
+
+            
+            <div class="text-center" *ngIf="createSensorForm.get('normalV')?.errors?.['pattern']">
+              <small class="text-danger">El campo permite solo números.</small>
+            </div>
+            
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Valor máximo:</label>
+            <input type="number" class="form-control" id="recipient-name" formControlName="criticalV"
+              >
+
+              
+            <div class="text-center" *ngIf="createSensorForm.get('criticalV')?.errors?.['required']">
+              <small class="text-danger">El campo valor máximo es obligatorio.</small>
+            </div>
+
+            
+            <div class="text-center" *ngIf="createSensorForm.get('criticalV')?.errors?.['pattern']">
+              <small class="text-danger">El campo permite solo números.</small>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Crear sensor</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
