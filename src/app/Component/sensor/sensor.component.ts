@@ -78,7 +78,7 @@ if(this.editSensorForm.valid){
 this.sensorService.updateSensor(s).subscribe(
   (response:any)=>{
     alert(response)
-    location.reload()
+    this.loadSensors();
   }
 )
 }

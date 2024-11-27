@@ -58,14 +58,20 @@
         <ul class="list-group">
           <li *ngFor="let r of readings" class="list-group-item d-flex justify-content-between align-items-center">
             {{r.status}}
-            <span class="badge bg-primary rounded-pill">{{r.reading_value | number: '1.2-2'}}</span>
+            <span 
+              class="badge rounded-pill" 
+              [ngClass]="{
+                'bg-danger': r.status === 'ROJA', 
+                'bg-warning': r.status === 'MEDIA', 
+                'bg-success': r.status === 'NORMAL'
+              }">
+              {{r.reading_value | number: '1.2-2'}}
+            </span>
           </li>
-          
         </ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-
       </div>
     </div>
   </div>

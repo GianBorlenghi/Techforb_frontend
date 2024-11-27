@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/Service/auth-service.service';
 import * as $ from 'jquery';
 import { CookieService } from 'ngx-cookie-service';
 import { CookieServic } from 'src/app/Service/cookie.servic';
+import { AppComponent } from 'src/app/app.component';
+import { UserService } from 'src/app/Service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoad: boolean = false;
 
-  constructor(private titleService:Title,private cookieService:CookieServic,private titulo:Title,private route: Router, private formBuilder: FormBuilder, private authService: AuthService, private httpClient: HttpClient) { 
+  constructor(private userService:UserService,private app:AppComponent,private titleService:Title,private cookieService:CookieServic,private titulo:Title,private route: Router, private formBuilder: FormBuilder, private authService: AuthService, private httpClient: HttpClient) { 
 
     this.loginForm = this.formBuilder.group({
 
@@ -78,7 +80,14 @@ export class LoginComponent implements OnInit {
         this.authService.isLogued = true;
         this.cookieService.setCookie("token",data.token);
         this.cookieService.setCookie("id_user",data.id_user);
+        const id_user = this.cookieService.getCookie("id_user");
+
         this.route.navigate(['/dashboard']);
+        this.userService.getUserById(id_user).subscribe(
+          (nombre: any) => {
+            this.app.updateUsername = nombre.body.username;
+          }
+        );
 
       }, (err: any) => {
         console.log(err.error);

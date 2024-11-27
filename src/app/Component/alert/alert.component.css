@@ -5,7 +5,6 @@ body {
     box-sizing: border-box;
   }
   
-  /* Cards Container */
   .cards-container {
     display: flex;
     flex-wrap: wrap;
@@ -14,7 +13,6 @@ body {
     padding: 1rem;
   }
   
-  /* Card */
   .card {
     width: 18rem;
     text-align: center;
@@ -37,4 +35,37 @@ body {
   .button-resolve:hover{
     background-color: #345d61;
     transition: 0.2ms;
+  }
+
+  .filter-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  
+  .select-container {
+    display: block;
+    align-items: center;
+    margin-right: 1rem;
+  }
+  
+  .select-container select {
+    padding: 5px 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    background-color: #f8f9fa;
+    color: #495057;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    appearance: none;
+    text-align: center;
+  }
+  
+  .select-container select:hover,
+  .select-container select:focus {
+    background-color: #e9ecef;
+    border-color: #497c81;
   }

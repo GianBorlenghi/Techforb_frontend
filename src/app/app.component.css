@@ -21,6 +21,7 @@
   padding: 10px 5px;
   z-index: 99;
   transition: all .5s;
+  
 }
 
 .nav-container i{
@@ -132,26 +133,26 @@
   box-shadow: 0 0 5px 3px rgba(0, 102, 204, 0.6);
 }
 
-/* Estilos para móviles */
 @media (max-width: 768px) {
-
-  .nav-container {
-    width: 0;
-    overflow: hidden;
+  .tooltip {
+    display: none;
   }
-
+  
   .nav-container.active {
     width: 200px; 
   }
 
- 
   .container {
     left: 0;
     width: 100%;
+    overflow: hidden;
   }
 }
 
 @media (max-width: 480px) {
+  .tooltip {
+    display: none;
+  }
 
   .nav-container i {
     font-size: 18px;

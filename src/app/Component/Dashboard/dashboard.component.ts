@@ -63,12 +63,13 @@ export class DashboardComponent implements OnInit {
   async ngOnInit() {
     this.titleService.setTitle("Dashboard")
       this.route.navigate(['/dashboard/'])
-
-    this.getAllPlants()
-    this.getAllSensor()
-    this.getAllCountries()
-    this.getAllAlert()
-    this.getReadSensor()
+      await this.delay(2000);
+      this.getAllPlants();
+      this.getAllSensor();
+      this.getAllCountries();
+      this.getAllAlert();
+      this.getReadSensor();
+  
 
     $(document).ready(function () {
       $('.nav-container li').on('click', function () {
@@ -116,7 +117,9 @@ export class DashboardComponent implements OnInit {
     this.cookieService.setArrayInCookie("plant_co", this.plants)
 
   }
-
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   openModalEdit(plant: Plant) {
     this.editPlantForm.patchValue({
