@@ -19,12 +19,8 @@ export class AppComponent implements OnInit {
   title = 'entrega_techf_frontend';
   constructor(private titleService:Title,private userService: UserService, private router: Router, private cookieService: CookieServic, private authService: AuthService) { }
   ngOnInit(): void {
-    this.titleService.setTitle("Modificar perfil");
-    this.userService.getUserById(this.cookieService.getCookie("id_user")).subscribe(
-      (user: any) => {
-        this.userr = user;
-      }
-    )
+    
+  
     $(document).ready(function () {
       // Alternar la barra lateral al hacer clic en el botón
       $('#menu-toggle').click(function () {
@@ -59,6 +55,10 @@ export class AppComponent implements OnInit {
     this.cookieService.deleteCookie('id_user'); // ID del usuario
 
     this.router.navigate(['/login']);
+  }
+  toggleMenu() {
+    const navContainer = document.querySelector('.nav-container');
+    navContainer?.classList.toggle('active');
   }
 }
 

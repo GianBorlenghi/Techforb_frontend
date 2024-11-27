@@ -82,7 +82,7 @@
 
 
 .nav-container li.active a i {
-  color: #6998ef; /* Color blanco cuando está activo */
+  color: #6998ef; 
 }
 
 
@@ -106,20 +106,45 @@
   border-radius: 12px;
 }
 
+.menu-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  font-size: 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.menu-button:hover {
+  background-color: #555;
+  transform: scale(1.1);
+}
+
+.menu-button:focus {
+  outline: none;
+  box-shadow: 0 0 5px 3px rgba(0, 102, 204, 0.6);
+}
 
 /* Estilos para móviles */
 @media (max-width: 768px) {
-  /* Ocultar barra lateral por defecto */
+
   .nav-container {
     width: 0;
     overflow: hidden;
   }
 
   .nav-container.active {
-    width: 200px; /* Ancho de la barra cuando está activa */
+    width: 200px; 
   }
 
-  /* Ajustar el contenido principal */
+ 
   .container {
     left: 0;
     width: 100%;
@@ -127,7 +152,7 @@
 }
 
 @media (max-width: 480px) {
-  /* Ajustar íconos y espaciado */
+
   .nav-container i {
     font-size: 18px;
   }

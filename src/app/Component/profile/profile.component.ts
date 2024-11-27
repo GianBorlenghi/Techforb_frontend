@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { User } from 'src/app/Model/User';
 import { CookieServic } from 'src/app/Service/cookie.servic';
@@ -13,8 +14,9 @@ import { UserService } from 'src/app/Service/user.service';
 export class ProfileComponent implements OnInit {
   profileForm:FormGroup;
   pass_regex = "(?=.*[-!#$%&/().,?¡_])(?=.*[A-Z])(?=.*[a-z]).{8,}";
-
-  constructor(private cookieService:CookieServic,private route:Router,private userService:UserService,private formBuilder:FormBuilder) { 
+userr:any;
+  constructor(private titleService:Title,private cookieService:CookieServic,private route:Router,private userService:UserService,private formBuilder:FormBuilder) { 
+      this.titleService.setTitle("Modificar perfil");
     this.profileForm = this.formBuilder.group({
 
       name: ['', [Validators.required, Validators.maxLength(25), Validators.minLength(3), Validators.pattern('^[a-zA-ZÀ-ÿñÑ]+( [a-zA-ZÀ-ÿñÑ]+)*$')]],
@@ -24,13 +26,24 @@ export class ProfileComponent implements OnInit {
       password: ['', [Validators.required, Validators.maxLength(25), Validators.minLength(8), Validators.pattern(this.pass_regex)]]
     })
 
-    /*this.profileForm.patchValue({
-      name:
-    });
-*/
+
   }
 
   ngOnInit(): void {
+    this.userService.getUserById(this.cookieService.getCookie("id_user")).subscribe(
+      (user: any) => {
+        this.userr = user.body;
+        this.profileForm.patchValue({
+          name: this.userr.name,
+          surname: this.userr.surname,
+          province: this.userr.province,
+          city:this.userr.city
+        });
+        console.log(this.userr)
+      }
+    )
+
+
   }
 
 

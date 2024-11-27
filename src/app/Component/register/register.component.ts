@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { User } from 'src/app/Model/User';
 import { AuthService } from 'src/app/Service/auth-service.service';
@@ -14,7 +15,9 @@ export class RegisterComponent implements OnInit {
   today: any = new Date();
   ageValid: boolean=true;
   registerForm:FormGroup;
-  constructor(private formBuilder:FormBuilder,private authService:AuthService,private route:Router) { 
+  constructor(private titleService:Title,private formBuilder:FormBuilder,private authService:AuthService,private route:Router) { 
+    this.titleService.setTitle("Register")
+    
     this.registerForm = this.formBuilder.group({
 
       name: ['', [Validators.required, Validators.maxLength(25), Validators.minLength(3), Validators.pattern('^[a-zA-ZÀ-ÿñÑ]+( [a-zA-ZÀ-ÿñÑ]+)*$')]],
@@ -44,12 +47,14 @@ export class RegisterComponent implements OnInit {
     }
 
     if (this.registerForm.valid) {
+      $('#btnRegistrar').prop("disabled",true)
       this.authService.register(user).subscribe(
         (data:any)=>{
-          alert(data)
+          alert("Registro exitoso, serás redirigido al login.");
           this.route.navigate(['/login']);
 
         },(error:any)=>{
+          $('#btnRegistrar').prop("disabled",false)
           alert(error.error.message);
         }
       )

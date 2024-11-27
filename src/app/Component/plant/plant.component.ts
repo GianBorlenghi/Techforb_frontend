@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router, RouterLink } from '@angular/router';
 import { Plant } from 'src/app/Model/Plant';
 import { Reading } from 'src/app/Model/Reading';
@@ -20,9 +21,12 @@ export class PlantComponent implements OnInit {
   redReading = 0;
   mediumReading = 0;
   okReading = 0;
-  constructor(private readService:ReadingService,private router:Router,private plantService:PlantService,private cookieService:CookieServic,private sensorPlantService:SensorPlantService) { }
+  constructor(private route:Router,private titleService:Title,private readService:ReadingService,private router:Router,private plantService:PlantService,private cookieService:CookieServic,private sensorPlantService:SensorPlantService) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Plants")
+    this.route.navigate(['/dashboard/plantas'])
+
 this.getAllPlants();
 this.getAllSensorPlant();    
 }
@@ -64,14 +68,7 @@ getSensorById(id: any) {
   return null;
 }
 
-getReadingById(id: any) {
-  for (let i = 0; i < this.sensors.length; i++) {
-    for (let k = 0; k < this.sensors[i].readings; k++) {
-      console.log()
-    }
-  }
-  return null;
-}
+
 
 seeReads(id:any){
   for (let plant of this.plants) {
@@ -89,7 +86,6 @@ seeReads(id:any){
 }
 enableDisabled(s:SensorPlant){
   s.status = !s.status
-  console.log(s)
   this.sensorPlantService.enableDisableSensor(s).subscribe(
     (data:any)=>{
       this.getAllPlants();
@@ -104,7 +100,6 @@ generateRandomReading(){
       alert("Lectura generada");
       $('#btnLectura').prop("disabled",false);
 
-      console.log(data)
     }
   )
 }

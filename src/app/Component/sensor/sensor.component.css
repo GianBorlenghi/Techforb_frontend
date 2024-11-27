@@ -6,7 +6,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Cards Container */
 .cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -15,7 +14,6 @@ body {
   padding: 1rem;
 }
 
-/* Card */
 .card {
   width: 18rem;
   text-align: center;
@@ -28,11 +26,10 @@ body {
   transform: scale(1.05);
 }
 
-/* Table */
 .table-principal {
   padding: 1rem;
-  overflow-x: auto;  /* Permite desplazamiento horizontal */
-  overflow-y: auto;  /* Permite desplazamiento vertical */
+  overflow-x: auto; 
+  overflow-y: auto;  
   background-color: rgb(213, 255, 225);
   width: 70%;
   margin: 0 auto;
@@ -47,8 +44,7 @@ body {
 }
 
 .table {
-  width: 100%; /* Mantiene el tamaño deseado para la tabla */
-  margin: 0 auto; /* Centra la tabla horizontalmente */
+  width: 100%; 
   border-collapse: collapse;
   text-align: center;
 
@@ -88,11 +84,8 @@ transition: transform 0.3s ease-in-out;
   padding: 1rem;
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
-  /* Adjust cards layout */
 
-  /* Table adjustments */
   .table-principal {
     padding: 0.5rem;
     overflow-y:auto;
@@ -104,7 +97,6 @@ transition: transform 0.3s ease-in-out;
     padding: 0.5rem;
   }
 
-  /* Header adjustments */
   .header-container {
     gap: 1rem;
     flex-direction: column;
@@ -115,7 +107,6 @@ transition: transform 0.3s ease-in-out;
 }
 
 @media (max-width: 480px) {
-  /* Reduce card size */
  
   .table-principal {
     overflow-y:auto;

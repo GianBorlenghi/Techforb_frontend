@@ -18,12 +18,12 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoad: boolean = false;
 
-  constructor(private cookieService:CookieServic,private titulo:Title,private route: Router, private formBuilder: FormBuilder, private authService: AuthService, private httpClient: HttpClient) { 
+  constructor(private titleService:Title,private cookieService:CookieServic,private titulo:Title,private route: Router, private formBuilder: FormBuilder, private authService: AuthService, private httpClient: HttpClient) { 
 
     this.loginForm = this.formBuilder.group({
 
       username: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5), Validators.email]],
-      password: [''/*, [Validators.required, Validators.maxLength(25), Validators.minLength(8)]*/]
+      password: ['', [Validators.required, Validators.maxLength(25), Validators.minLength(8)]]
     })
 
   }
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    this.titleService.setTitle("Login");
     $('#eye-icon').click(() => {
       let eyeIcon = $('#eye-icon');
       let passwordInput = $('#floatingPassword');

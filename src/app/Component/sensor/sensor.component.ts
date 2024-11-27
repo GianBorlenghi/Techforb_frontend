@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { Plant } from 'src/app/Model/Plant';
 import { Sensor } from 'src/app/Model/Sensor';
 import { SensorDTO } from 'src/app/Model/SensorDTO';
@@ -15,7 +17,7 @@ export class SensorComponent implements OnInit {
   selectedSensor:any = {};
   editSensorForm:FormGroup;
   createSensorForm:FormGroup;
-  constructor(private sensorService:SensorService,private formBuilder:FormBuilder) { 
+  constructor(private titleService:Title,private route:Router,private sensorService:SensorService,private formBuilder:FormBuilder) { 
 this.editSensorForm = this.formBuilder.group({
   sensorName:['',[Validators.required,Validators.maxLength(25),Validators.minLength(3),Validators.pattern('^[a-zA-Z]+( [a-zA-Z]+)*$')]],
   normalValue:['',[Validators.required,Validators.pattern('^[+-]?[0-9]+$')]],
@@ -32,6 +34,9 @@ this.createSensorForm = this.formBuilder.group({
 
 
   ngOnInit(): void {
+    this.titleService.setTitle("Sensores")
+    this.route.navigate(['/dashboard/sensor'])
+
     this.loadSensors();
     
     function formatDate(rawDate:any) {

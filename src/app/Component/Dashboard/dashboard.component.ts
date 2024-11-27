@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { Alert } from 'src/app/Model/Alert';
@@ -42,7 +43,7 @@ export class DashboardComponent implements OnInit {
   s: any[] = []
   readingsBySensor: { [key: number]: any[] } = {};
   readSensor: any[] = []
-  constructor(private sensorPlantService: SensorPlantService, private alertService: AlertService, private cookieService: CookieServic, private router: Router, private plantService: PlantService, private sensorService: SensorService, private countryService: CountryService, private formBuilder: FormBuilder) {
+  constructor(private route:Router,private titleService:Title,private sensorPlantService: SensorPlantService, private alertService: AlertService, private cookieService: CookieServic, private router: Router, private plantService: PlantService, private sensorService: SensorService, private countryService: CountryService, private formBuilder: FormBuilder) {
 
     this.createPlantForm = this.formBuilder.group({
       plantName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+( [a-zA-Z]+)*$'), Validators.minLength(3), Validators.maxLength(40)]],
@@ -60,6 +61,8 @@ export class DashboardComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.titleService.setTitle("Dashboard")
+      this.route.navigate(['/dashboard/'])
 
     this.getAllPlants()
     this.getAllSensor()
@@ -315,7 +318,6 @@ export class DashboardComponent implements OnInit {
     this.alertService.getAllAlert().subscribe(
       (data: any) => {
         this.al = data.body
-        console.log(this.al)
         let allNormalRead = 0;
         let allRedAlert = 0;
         let allMediumAlert = 0

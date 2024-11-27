@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { Alert } from 'src/app/Model/Alert';
 import { Plant } from 'src/app/Model/Plant';
 import { Sensor } from 'src/app/Model/Sensor';
@@ -15,14 +17,17 @@ import { SensorService } from 'src/app/Service/sensor.service';
 })
 export class AlertComponent implements OnInit {
 
-  constructor(private cookieService:CookieServic,private alertService:AlertService,private plantService:PlantService,private sensorService:SensorService) { }
+  constructor(private route:Router,private titleService:Title,private cookieService:CookieServic,private alertService:AlertService,private plantService:PlantService,private sensorService:SensorService) { }
+  
+  
   plant:any[] = [];
   alert:any[] = []
   sen:Sensor []=[];
   p:any []=[]
   id:number=0;
   ngOnInit(): void {
-
+    this.route.navigate(['/dashboard/alertas'])
+    this.titleService.setTitle("Alerts");
     this.findSensor()
     this.findAllPlants();
   }
@@ -31,14 +36,12 @@ export class AlertComponent implements OnInit {
     this.sensorService.getAllSensor().subscribe(
       (data:any)=>{
         this.sen = data;
-        console.log(data)
 
       }
     )
   }
   findAllPlants() {
     this.p = this.cookieService.getArrayFromCookie("sensores");
-    console.log('Sensores desde cookie:', this.p);  // Verifica los datos de la cookie
   
     this.plantService.getAllPlants().subscribe(
       (data: any) => {
@@ -49,7 +52,6 @@ export class AlertComponent implements OnInit {
             let s1=0;
             this.cookieService.getArrayFromCookie("sensores").forEach(s=>{
               if(s.id_sensor == sensor.id){
-                console.log("HOla")
               }
             })
             for (let alert of sensor.alert) {

@@ -8,10 +8,10 @@
   rel="stylesheet">
 
 
-  <button id="menu-toggle" style="position: fixed; top: 10px; left: 10px; z-index: 100;">☰</button>
 
-<div *ngIf="!isLoginRoute()" class="navbar">
+<div *ngIf="!isLoginRoute()"  class="navbar">
 
+  <button (click)="toggleMenu()"  *ngIf="!isLoginRoute()" id="menu-toggle" style="position: fixed; top: 10px; left: 10px; z-index: 100;">☰</button>
 
 
     <ul class="nav-container">

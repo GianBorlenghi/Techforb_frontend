@@ -12,7 +12,10 @@ export class UserService {
     constructor(private http:HttpClient,private cookieService:CookieServic) { }
 
     getUserById(id:any){
-      return this.http.get(this.url + 'auth/findById/' + id,{responseType:'json',observe:'response'})
+      let header = new HttpHeaders().set(
+        'authorization', 'Bearer '+this.cookieService.getCookie("token")
+      )
+      return this.http.get(this.url + 'v1/auth/findById/' + id,{headers:header,responseType:'json',observe:'response'})
     }
 
  

@@ -1,58 +1,195 @@
 body {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  font-family: 'Inter';
-    box-sizing: border-box;
-}
-
-.container{
-    background: linear-gradient(to right, rgba(33, 150, 243, 0.9), rgba(3, 169, 244, 0.8));  height: 100vh;
-
-    width: 60%;
-    height: 100%;
     margin: 0;
-    justify-content: center;
-}
-
-h6>i{
-    color:rgb(217, 217, 96);
-    margin-right: 10px;
-}
-.container-form{
     display: flex;
-    margin:0 auto;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .container {
+    background: linear-gradient(to right, rgba(88, 155, 195, 0.9), rgba(134, 191, 218, 0.8));  
+    height: 200vh;
+    width: 150vh;
+    padding: 20px;
+    display: flex;
     flex-direction: column;
-    justify-content:center ;
-    border-radius: 100px;
-}
-
-.form-floating > input{
-    margin-top: 20px;
-    width: 100%;
-    font-size: 1.2rem; /* Aumenta el tamaño de la fuente */
-    height: 100%; /* Ajusta la altura para hacer los inputs más grandes */
-    outline: none;
-    border:none
-}
-
-.form-group>button{
-    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-left:0;
+  }
+  
+  .container-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    width: 100vh;
+    max-width: 200vh;
+    height: 100vh;
+    margin: 0 auto;
+  }
+  
+  h1, h3 {
     text-align: center;
-    height: 50px;
-    width: 170px;
-
+    font-size: 1.5rem; 
+    margin-bottom: 10px;
+  }
+  
+  h6 i {
+    color: rgb(217, 217, 96);
+    margin-right: 10px;
+  }
+  
+  .form-floating {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .form-floating > input {
+    margin-top:15px;
+    width: 100%;
+    font-size: .9rem; 
+    height: 80px; 
+    padding: 0 10px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    
+  }
+  .form-group > button {
+    margin-bottom: 20px;
+    text-align: center;
+    height: 45px;
+    width: 100%;
+    background-color: #1e40af;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
 }
-a{
+
+.form-group > button:hover {
+    background-color: #3b82f6;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form-group > button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+  
+
+
+  .btn-registro > a {
     text-decoration: none;
+    color: inherit;
+    width: 100%;
+    text-align: center;
 }
 
-.alert {
-    font-size: 10px;
-    color: #f00;
-    padding: 0;
-    margin: 0;
-    margin-top: 0;
-    top: 0;
+.form-group > a.olvidaste {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #1e40af;
+    margin-top: 5px;
+    text-align: center;
+}
+  
+  .text-danger{
+    font-size:12px;
+    margin:10px;
+  }
+  
+  p.text-xs {
+    text-align: center;
+    font-size: 0.8rem;
+    
   }
 
+  .btn-registro {
+    margin-top: 0px;
+    text-align: center;
+    height: 45px;
+    width: 57%;
+    background-color: #1e40af;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
+
+  .btn-registro:hover {
+    
+  }
+.btn-registro > a {
+    text-decoration: none;
+    color: #fff;
+    display: inline-block; 
+    width: 100%; 
+}
+  @media (max-width: 768px) {
+    .container {
+      display: none; 
+  }
+    .container-form {
+        font-size: .6rem;
+      padding: 15px;
+      max-width: 90%;
+    }
+  
+    h1, h3 {
+      font-size: 1rem;
+    }
+  
+    .form-floating > input {
+      font-size: .7rem;
+      height: 45px;
+    }
+  
+    .form-group > button {
+      height: 35px;
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      display: none; 
+  }
+    .container-form {
+      padding: 15px;
+      max-width: 95%; 
+    }
+  
+    h1, h3 {
+      font-size: .9rem;
+    }
+  
+    .form-floating > input {
+      font-size: 1rem;
+      height: 40px;
+    }
+  
+    .form-group > button {
+      height: 45px;
+      font-size: 1.1rem;
+    }
+  
+    .alert {
+      font-size: 9px;
+    }
+  
+    p.text-xs {
+      font-size: 0.6rem;
+    }
+  }
